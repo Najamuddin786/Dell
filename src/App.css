@@ -1,0 +1,18 @@
+.rotateIcon {
+    
+    transition: transform 0.5s ease;
+}
+
+.rotateIcon:hover {
+    transform: rotate(-180deg);
+ }
+
+ .my {
+    width: 40%;
+    background-size: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .my:hover {
+    transform: scale(1.2);
+  }
