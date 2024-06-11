@@ -1,6 +1,6 @@
 
-import {Box,Flex,Image,Spacer,Text,Button} from '@chakra-ui/react'
-import { ChevronDownIcon, Search2Icon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import {Box,Flex,Image,Spacer,Text,Button,AspectRatio} from '@chakra-ui/react'
+import { ChevronDownIcon, Search2Icon, ArrowBackIcon, ArrowForwardIcon ,ChevronRightIcon} from '@chakra-ui/icons';
 import { Link } from 'react-router-dom'
 export default function Home(){
     let array=[
@@ -117,6 +117,24 @@ export default function Home(){
                 </Flex>
 
             </Flex>
+            {/* ________________ VIDEO SECTION */}
+            <Flex position={'relative'} align={'center'} justifyContent={'center'} flexDirection='column' color={'white'} bgPosition={'center'} alignItems={'center'} bgSize={'100%'} w={'100vw'} height={'85vh'}  bgRepeat={'no-repeat'} bgImage={'https://www.techexplorist.com/wp-content/uploads/2017/08/Dark-Matter-.jpg'}>
+
+            <Flex flexDir={'column'} align='center' gap={1}>
+                <Text fontSize={'24px'}>DELL TECHNOLOGIES + MERMAIDS</Text>
+                <Text fontSize={'32px'}><h1>Creating More Equal Ocean Access</h1></Text>
+                <Text fontSize={'16px'}>
+                Technology gives freediver and ocean advocate, Zandile Ndhlovu, freedom to grow The Black Mermaid ,<br /> Foundation and continue to make spaces where everyone belongs.
+                </Text>
+                <Button mt={4} bgColor={'#0984e3'} _hover={{bgColor:"#74b9ff"}} color={'white'}>Play Now</Button>
+                <Link><Text m={2} textDecoration={'underline'}>View more stories <ArrowForwardIcon /></Text></Link>
+            </Flex>
+            <Button position={'absolute'} bottom={'50px'} right={'150px'} bgColor={'#2d3436'} _hover={{bgColor:"#b2bec3"}} color={'white'}>Play Now</Button>
+
+
+
+            </Flex>
+
         
     </>
 }
