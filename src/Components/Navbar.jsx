@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Input, Button, Text } from '@chakra-ui/react';
 import { ChevronDownIcon, Search2Icon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logodell from '../assets/logodell.png';
 import '../App.css';
@@ -10,18 +10,24 @@ export default function Navbar() {
   const [index, setIndex] = useState(0);
   const [card,setCard]=useState(false)
   const [cardP,setCardP]=useState(false)
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   
 //   const [hover,setHover]=useState(false)
 
   const newNav = [
     { label: "Artificial Intelligence", to: '/', icon: false },
-    { label: "Products", to: '/', icon: true },
+    { label: "Products", to: '/product', icon: true },
     { label: "Solutions", to: '/', icon: true },
     { label: "Services", to: '/', icon: true },
     { label: "Support", to: '/', icon: true },
     { label: "Deals", to: '/', icon: true },
     { label: "Find a Store", to: '/', icon: false },
   ];
+  useEffect(()=>{
+      if(card){
+        setCardP(true)
+      }
+  },[card])
 
   const lable = [
     {
@@ -56,11 +62,45 @@ export default function Navbar() {
     }
   ];
 
+  function View() {
+    let m=cart.map((ele)=>+ele.price)
+    let sum=0;
+    for(let i=0;i<m.length;i++){
+      sum+=+m[i]
+    }
+    console.log(m)
+    return (
+      <Flex flexDir={'column'} gap={1}>
+
+        <Text>Total Price : {Math.round(sum)} </Text>
+        <Text>Total Item : {m.length} </Text>
+        <Flex gap={2} overflow='scroll' flexDirection='column'>
+          {cart.map((item,i, index) => (
+            <Flex justifyContent={'space-between'} borderRadius={'sm'} bg={'gray'} p={2} color={'white'} key={index}>
+              <Image w='30px' h='30px' src={item.image} />
+              <Text>Title: {item.title}</Text>
+              <Text>Price: {item.price}</Text>
+              <Button onClick={(i)=>{
+              //  console.log(i)
+           
+               let a= cart.splice(1, 1);
+               localStorage.setItem('cart', JSON.stringify(cart));
+              //  console.log(a)
+              //   console.log(cart)
+              }}>Remove</Button>
+            </Flex>
+          ))}
+        </Flex>
+      </Flex>
+    );
+  }
+  
+
  function CardHover(){
   return <>
-    <Box zIndex={1000} p={5} w={'250px'} right={'48px'} border={'1px solid black'} borderRadius={'md'}  bg={'white'} position={'fixed'} >
+    <Box w='400px' h={'500px'} overflow={'scroll'} zIndex={1000} p={5}  right={'48px'} border={'1px solid black'} borderRadius={'md'}  bg={'white'} position={'fixed'} >
         <Text fontSize={'20px'} fontWeight={600}>Your Dell.com Cards</Text>
-        <Box>{cardP==true ? "Your Card Item" :"Your Card is empty"}</Box>
+        <Box>{cardP==true ? <View/> :"Your Card is empty"}</Box>
     </Box>
   </>
  }
