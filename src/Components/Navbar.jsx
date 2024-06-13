@@ -106,7 +106,7 @@ export default function Navbar() {
     <>
       <Box px="2%" bg="white" zIndex={1000}>
         <Flex h="3.5rem" align="center">
-          <Box><Image h="40px" w="200px" src={logodell} /></Box>
+          <Link to='/home'><Box><Image h="40px" w="200px" src={logodell} /></Box></Link>
           <Box pl="50px" w="540px">
             <Input placeholder="Search Dell" />
           </Box>
@@ -154,7 +154,7 @@ export default function Navbar() {
             <Flex key={i}>
               <Link to={ele.to}>
                 <Text p={2} _hover={{ background: 'gray.100', borderBlockEnd: "2px solid gray" }} opacity="0.8">
-                  {ele.label} {ele.icon && <ChevronDownIcon className="rotateIcon" />}
+                  {ele.label} {ele.icon && <ChevronDownIcon className={card==true ? "rotateIcon" : null} />}
                 </Text>
               </Link>
             </Flex>
